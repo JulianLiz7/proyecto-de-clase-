@@ -1,37 +1,50 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Publicar Producto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
 
-@section('title','Crear Producto')
+@include('layouts.nav')
 
-@section('content')
+<div class="container">
+    <h1>Publicar Producto</h1>
 
-<h2>Publicar Nuevo Producto</h2>
+    <div class="card">
 
-<form action="#" method="POST" enctype="multipart/form-data">
-    @csrf
+        <form action="#" method="POST" enctype="multipart/form-data">
+            @csrf
 
-    <label>ID Producto</label>
-    <input type="text" name="id_producto">
+            <label>Nombre</label>
+            <input type="text" name="name" required>
 
-    <label>Nombre</label>
-    <input type="text" name="nombre">
+            <label>Precio</label>
+            <input type="number" name="price" required>
 
-    <label>Precio</label>
-    <input type="number" name="precio">
+            <label>Estado</label>
+            <select name="status">
+                <option value="Nuevo">Nuevo</option>
+                <option value="Usado">Usado</option>
+            </select>
 
-    <label>Descripción</label>
-    <textarea name="descripcion"></textarea>
+            <!-- 🔥 NUEVO CAMPO IMAGEN -->
+            <label>Imagen del producto</label>
+            <input type="file" name="image" accept="image/*">
 
-    <label>Imagen</label>
-    <input type="file" name="imagen">
+            <label>Descripción</label>
+            <textarea name="description" rows="4"></textarea>
 
-    <label>Estado</label>
-    <select name="estado">
-        <option value="nuevo">Nuevo</option>
-        <option value="usado">Usado</option>
-    </select>
+            <button type="submit" class="btn">Publicar</button>
 
-    <button type="submit" class="btn">Publicar Producto</button>
+        </form>
 
-</form>
+    </div>
+</div>
 
-@endsection
+@include('layouts.footer')
+
+</body>
+</html>
