@@ -13,5 +13,5 @@ Route::prefix('product')->controller((ProductController::class))->group(function
 
     Route::get('/create', 'create');
 
-    Route::get('/detalle', 'detalle');
+    Route::get('/show', 'show');
 });
