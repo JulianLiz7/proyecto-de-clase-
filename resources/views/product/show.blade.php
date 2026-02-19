@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle Producto</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
+@extends('layouts.app')
+@section('title', 'Detalle Producto')
 
-@include('layouts.nav')
-
+@section('content')
 <div class="container">
     <div class="card">
         <h2>iPhone 15</h2>
@@ -22,8 +14,4 @@
         </p>
     </div>
 </div>
-
-@include('layouts.footer')
-
-</body>
-</html>
+@endsection

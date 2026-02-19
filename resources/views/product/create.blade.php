@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Publicar Producto</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
+@extends('layouts.app')
+@section('title', 'Publicar Producto')
 
-@include('layouts.nav')
-
+@section('content')
 <div class="container">
     <h1>Publicar Producto</h1>
 
@@ -43,8 +35,4 @@
 
     </div>
 </div>
-
-@include('layouts.footer')
-
-</body>
-</html>
+@endsection
