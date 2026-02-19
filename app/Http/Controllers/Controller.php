@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class Controller extends Controller
+abstract class Controller
 {
-    public function index()
-    {
-        return 'LISTA DE PRODUTOS';
-    }
+   
 }

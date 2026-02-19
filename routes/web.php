@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\HomeController;
+
+Route::get('/', HomeController::class);
+
+
+Route::prefix('product')->controller((ProductController::class))->group(function () {
+
+    Route::get('/', 'index');
+
+    Route::get('/create', 'create');
+
+    Route::get('/detalle', 'detalle');
 });
-
-Route::get('/product', [ProductController::class, 'index']);
-
-Route::get('/product/create', [ProductController::class, 'create']);
-
-Route::get('/product/detalle', [ProductController::class, 'detalle']);
-
-
