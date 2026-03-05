@@ -1,42 +1,37 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-{{-- Aquí defines el título específico para la pestaña del navegador --}}
 @section('title', 'Inicio - Listado de Productos')
 
 @section('content')
-    <div class="results-bar">
-        1-5 de 5 resultados para <span style="color: #c45500; font-weight: bold;">"Electrónicos de Clase"</span>
-    </div>
-
     <div class="container">
-        <div class="product-grid">
+        <h1>Nuestros Productos</h1>
+
+        {{-- Cambiamos a class="products" para que coincida con tu CSS --}}
+        <div class="products">
             @foreach($misProductos as $p)
-                <div class="product-card">
-                    <a href="/tienda/{{ $p['id'] }}">
-                        <img src="{{ $p['img'] }}" alt="{{ $p['name'] }}">
-                    </a>
+                {{-- Cambiamos a class="card" para que coincida con tu CSS --}}
+                <div class="card">
+                    {{-- Contenedor para la imagen --}}
+                    <div class="emoji">
+                        <img src="{{ $p['img'] }}" alt="{{ $p['name'] }}" 
+                             style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+                    </div>
 
-                    <a href="/tienda/{{ $p['id'] }}" style="text-decoration: none;">
-                        <p style="font-size: 0.8rem; color: #565959;">ID: #{{ $p['id'] }}</p>
-                        
-                        <p style="font-size: 0.9rem; margin: 5px 0;">
-                            {{ Str::limit($p['description'], 80) }}
-                        </p>
+                    <h3>{{ $p['name'] }}</h3>
+                    
+                    <p style="color: #aaa; font-size: 0.9rem; margin: 10px 0;">
+                        {{ Str::limit($p['description'], 50) }}
+                    </p>
 
-                        <p class="price">
-                            <span style="font-size: 0.8rem; vertical-align: top;">$</span>{{ number_format($p['price'], 2) }}
-                        </p>
+                    <h2 style="color: #00d4ff;">${{ number_format($p['price'], 2) }}</h2>
 
-                        <div style="margin-top: 10px;">
-                            <span class="status-badge {{ $p['state'] == 'Disponible' ? 'available' : 'unavailable' }}">
-                                {{ $p['state'] }}
-                            </span>
-                        </div>
+                    <p style="margin: 10px 0;">
+                        <span class="status-badge" style="color: {{ $p['state'] == 'Disponible' ? '#00d4ff' : '#ff4d4d' }}">
+                            {{ $p['state'] }}
+                        </span>
+                    </p>
 
-                        <p style="font-size: 0.8rem; color: #007600; margin-top: 10px;">
-                            ✓ Envío gratis a Bucaramanga
-                        </p>
-                    </a>
+                    <a href="/tienda/{{ $p['id'] }}" class="btn">Ver Detalles</a>
                 </div>
             @endforeach
         </div>

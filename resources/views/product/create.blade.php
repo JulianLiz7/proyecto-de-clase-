@@ -7,7 +7,7 @@
 
     <div class="card">
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label>Nombre</label>
@@ -17,7 +17,7 @@
             <input type="number" name="price" required>
 
             <label>Estado</label>
-            <select name="status">
+            <select name="categoria">
                 <option value="Nuevo">Nuevo</option>
                 <option value="Usado">Usado</option>
             </select>
