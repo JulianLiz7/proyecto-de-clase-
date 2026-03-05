@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('product.index');
+        $ProductList = Product::all();
+
+        return view('product.index', ['misProductos' => $ProductList]);
     }
 
     public function create()
@@ -16,8 +19,8 @@ class ProductController extends Controller
         return view('product.create');
     }
 
-    public function show()
+    public function show($producto)
     {
-        return view('product.show');
+        return view('product.show', compact('producto'));
     }
 }
