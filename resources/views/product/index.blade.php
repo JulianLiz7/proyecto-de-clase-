@@ -6,32 +6,39 @@
     <div class="container">
         <h1>Nuestros Productos</h1>
 
-        {{-- Cambiamos a class="products" para que coincida con tu CSS --}}
+        
         <div class="products">
-            @foreach($misProductos as $p)
-                {{-- Cambiamos a class="card" para que coincida con tu CSS --}}
+            @foreach($misProductos as $product)
+                
                 <div class="card">
-                    {{-- Contenedor para la imagen --}}
+                    
                     <div class="emoji">
-                        <img src="{{ $p['img'] }}" alt="{{ $p['name'] }}" 
-                             style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+                        @if ($product->image)
+                        <img src="{{ asset('storage/'.$product->image) }}" alt="" >
+                    
+                         @else
+                         <img src="{{ asset('https://cdn-icons-png.freepik.com/512/18233/18233962.png') }}" alt="Imagen por defecto" >
+                                
+                            
+                        @endif
+                        
                     </div>
 
-                    <h3>{{ $p['name'] }}</h3>
+                    <h3>{{ $product['name'] }}</h3>
                     
                     <p style="color: #aaa; font-size: 0.9rem; margin: 10px 0;">
-                        {{ Str::limit($p['description'], 50) }}
+                        {{ Str::limit($product['description'], 50) }}
                     </p>
 
-                    <h2 style="color: #00d4ff;">${{ number_format($p['price'], 2) }}</h2>
+                    <h2 style="color: #00d4ff;">${{ number_format($product['price'], 2) }}</h2>
 
                     <p style="margin: 10px 0;">
-                        <span class="status-badge" style="color: {{ $p['state'] == 'Disponible' ? '#00d4ff' : '#ff4d4d' }}">
-                            {{ $p['state'] }}
+                        <span class="status-badge" style="color: {{ $product['state'] == 'Disponible' ? '#00d4ff' : '#ff4d4d' }}">
+                            {{ $product['state'] }}
                         </span>
                     </p>
 
-                    <a href="/tienda/{{ $p['id'] }}" class="btn">Ver Detalles</a>
+                    <a href="/tienda/{{ $product['id'] }}" class="btn">Ver Detalles</a>
                 </div>
             @endforeach
         </div>
