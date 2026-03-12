@@ -11,23 +11,50 @@
             @csrf
 
             <label>Nombre</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" >
+            @error('nombre')
+            <span style="color: red; font-size: 14px;">
+                {{$message}}
+            </span>
+            @enderror
+                
+        
 
             <label>Precio</label>
-            <input type="number" name="price" required>
+            <input type="number" name="price" >
+            @error('precio')
+            <span style="color: red; font-size: 14px;">
+                {{$message}}
+            </span>
+            @enderror
 
             <label>Estado</label>
             <select name="categoria">
                 <option value="Nuevo">Nuevo</option>
                 <option value="Usado">Usado</option>
             </select>
+            @error('categoria')
+            <span style="color: red; font-size: 14px;">
+                {{$message}}
+            </span>
+            @enderror
 
             <!-- 🔥 NUEVO CAMPO IMAGEN -->
             <label>Imagen del producto</label>
-            <input type="file" name="image" accept="image/*">
+            <input type="file" name="imagen" accept="image/*">
+            @error('imagen')
+            <span style="color: red; font-size: 14px;">
+                {{$message}}
+            </span>
+            @enderror
 
             <label>Descripción</label>
             <textarea name="description" rows="4"></textarea>
+            @error('description')
+            <span style="color: red; font-size: 14px;">
+                {{$message}}
+            </span>
+            @enderror
 
             <button type="submit" class="btn">Publicar</button>
 

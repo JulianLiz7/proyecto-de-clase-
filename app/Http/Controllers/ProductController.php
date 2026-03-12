@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class ProductController extends Controller
 {
     public function index()
@@ -30,6 +31,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+    //VALIDATION
+        $request->validate([
+            'nombre' => 'required|min=3|max=250',
+            'description' => 'required',
+            'precio' => 'required|numeric',
+            'categoria' => 'required|exists:categories,id',
+            'imagen' => 'required|image'
+        ]);
+
     dd($request->all());
 
         $nameProduct = new Product();
