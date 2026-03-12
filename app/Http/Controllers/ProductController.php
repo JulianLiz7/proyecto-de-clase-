@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 
 
+
 class ProductController extends Controller
 {
     public function index()
@@ -58,5 +59,12 @@ class ProductController extends Controller
         $nameProduct->save();
 
         echo "Producto creado correctamente";
+}
+
+public function destroy(Product $product)
+{
+    $product->delete();
+
+    return redirect()->route('product.index');
 }
 }
