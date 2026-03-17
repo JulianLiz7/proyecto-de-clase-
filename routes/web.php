@@ -19,3 +19,11 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
 
     Route::delete('/{product}', 'destroy')->name('product.destroy');
 });
+
+// Admin Routes
+use App\Http\Controllers\AdminController;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+});
