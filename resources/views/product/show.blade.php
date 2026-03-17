@@ -34,8 +34,15 @@
                 ${{ number_format($producto->price, 2) }}
             </div>
 
-            <div class="card-actions" style="margin-top: 30px;">
-                <a href="{{ route('product.index') }}" class="btn btn-glow" style="text-align: center; display: block; width: 100%;">Volver a Productos</a>
+            <div class="card-actions" style="margin-top: 30px; display: flex; gap: 15px;">
+                <a href="{{ route('product.index') }}" class="btn btn-glow" style="flex: 1; text-align: center;">Volver a Productos</a>
+                
+                <form action="{{ route('cart.add', $producto) }}" method="POST" style="flex: 1; margin: 0; padding: 0; background: transparent; box-shadow: none;">
+                    @csrf
+                    <!-- Include a hidden quantity field or a visible one later -->
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn" style="background-color: #10b981; color: white; width: 100%; height: 100%;">Añadir al Carrito</button>
+                </form>
             </div>
         </div>
 

@@ -38,10 +38,9 @@
 
                         <div class="card-actions">
                             <a href="{{ route('product.show', $product->id) }}" class="btn btn-glow">Ver Detalles</a>
-                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="delete-form">
-                                @method('DELETE')
+                            <form action="{{ route('cart.add', $product) }}" method="POST" style="flex:1; margin:0; padding:0; background:transparent; box-shadow:none;">
                                 @csrf
-                                <button class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn" style="background-color: #10b981; color: white; width: 100%;">+ Carrito</button>
                             </form>
                         </div>
                     </div>
