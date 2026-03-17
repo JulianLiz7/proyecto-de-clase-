@@ -4,48 +4,49 @@
 
 @section('content')
     <div class="container">
-        <h1>Nuestros Productos</h1>
+        <div class="header-container">
+            <h1>Nuestros Productos ✨</h1>
+        </div>
 
-
-        <div class="products">
+        <div class="products-grid">
             @foreach ($misProductos as $product)
-                <div class="card">
-
-                    <div class="emoji">
+                <div class="glass-card">
+                    <div class="card-image-wrapper">
                         @if ($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product['name'] }}" class="product-img">
                         @else
                             <img src="{{ asset('https://cdn-icons-png.freepik.com/512/18233/18233962.png') }}"
-                                alt="Imagen por defecto">
+                                alt="Imagen por defecto" class="product-img">
                         @endif
-
+                        <div class="status-overlay">
+                            <span class="status-badge {{ $product['state'] == 'Disponible' ? 'badge-available' : 'badge-unavailable' }}">
+                                {{ $product['state'] }}
+                            </span>
+                        </div>
                     </div>
 
-                    <h3>{{ $product['name'] }}</h3>
+                    <div class="card-content">
+                        <h3>{{ $product['name'] }}</h3>
 
-                    <p style="color: #aaa; font-size: 0.9rem; margin: 10px 0;">
-                        {{ Str::limit($product['description'], 50) }}
-                    </p>
+                        <p class="product-desc">
+                            {{ Str::limit($product['description'], 60) }}
+                        </p>
 
-                    <h2 style="color: #00d4ff;">${{ number_format($product['price'], 2) }}</h2>
+                        <div class="price-tag">
+                            ${{ number_format($product['price'], 2) }}
+                        </div>
 
-                    <p style="margin: 10px 0;">
-                        <span class="status-badge"
-                            style="color: {{ $product['state'] == 'Disponible' ? '#00d4ff' : '#ff4d4d' }}">
-                            {{ $product['state'] }}
-                        </span>
-                    </p>
-
-                    <a href="/tienda/{{ $product['id'] }}" class="btn">Ver Detalles</a>
-                    <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn" style="background: red">Eliminar</button>
-                    </form>
+                        <div class="card-actions">
+                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-glow">Ver Detalles</a>
+                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="delete-form">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
     </div>
-
-
 @endsection

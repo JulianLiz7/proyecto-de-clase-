@@ -25,9 +25,9 @@ class ProductController extends Controller
          ['categorylist' => $categorylist]);
     }
 
-    public function show($producto)
+    public function show(Product $product)
     {
-        return view('product.show', compact('producto'));
+        return view('product.show', ['producto' => $product]);
     }
 
     public function store(Request $request)
@@ -49,9 +49,9 @@ class ProductController extends Controller
         $nameProduct->price = $request->get('price');
         $nameProduct->category_id = $request->get('categoria');
 
-        if($request->hasFile('image')) {
+        if($request->hasFile('imagen')) {
             $ruta = $request->file('imagen')->store('images', 'public');
-            $newProduct->image = $ruta;
+            $nameProduct->image = $ruta;
         }
 
 
