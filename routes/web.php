@@ -22,8 +22,12 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
 
 // Admin Routes
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminCategoryController;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+    
+    // Admin Categories CRUD
+    Route::resource('categories', AdminCategoryController::class, ['as' => 'admin']);
 });

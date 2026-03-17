@@ -20,6 +20,7 @@
             <ul>
                 <li><a href="{{ url('/admin') }}" class="{{ request()->is('admin') ? 'active' : '' }}">Dashboard</a></li>
                 <li><a href="{{ route('admin.products') }}" class="{{ request()->is('admin/products') ? 'active' : '' }}">Productos</a></li>
+                <li><a href="{{ route('admin.categories.index') }}" class="{{ request()->is('admin/categories*') ? 'active' : '' }}">Categorías</a></li>
                 <li><a href="{{ route('product.index') }}" target="_blank" style="margin-top: 20px; border-top: 1px solid #374151; padding-top: 20px;">Ver Tienda Publica</a></li>
                 <!-- Add more links here later (e.g., Products, Users, Settings) -->
             </ul>
